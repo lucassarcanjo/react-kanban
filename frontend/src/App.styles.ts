@@ -4,5 +4,5 @@ export const AppContainer = styled.div`
   height: 100vh;
   width: 100vw;
 
-  background-color: lightpink;
+  background-color: #f5f5f5;
 `;
