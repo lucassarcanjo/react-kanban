@@ -24,6 +24,11 @@
     ]
   },
   "ignorePatterns": [
-    "vite.config.ts"
+    "vite.config.ts",
+    "node_modules",
+    "dist",
+    "build",
+    "coverage",
+    "**/plopfile.js"
   ]
 }
