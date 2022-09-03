@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { usePostCard } from "../../services/cards/methods";
+import { useScrollToElement } from "../../hooks";
 import { CardType, StatusType } from "../../types/cards";
 import { Card } from "../Card";
 import {
@@ -23,6 +23,13 @@ export const Column: React.FC<ColumnProps> = ({
   hasAddButton = false,
 }) => {
   const [isAddingCard, setIsAddingCard] = useState(false);
+  const { elementRef: newCardRef, scrollToElement } =
+    useScrollToElement<HTMLDivElement>();
+
+  const handleAddCard = () => {
+    setIsAddingCard(true);
+    scrollToElement();
+  };
 
   return (
     <Container>
@@ -41,6 +48,7 @@ export const Column: React.FC<ColumnProps> = ({
         ))}
         {isAddingCard && (
           <Card
+            ref={newCardRef}
             mode="edit"
             type={type}
             onFinish={() => setIsAddingCard(false)}
@@ -48,7 +56,7 @@ export const Column: React.FC<ColumnProps> = ({
         )}
 
         {hasAddButton && !isAddingCard && (
-          <AddCardButton type="button" onClick={() => setIsAddingCard(true)}>
+          <AddCardButton type="button" onClick={handleAddCard}>
             Nova Tarefa
           </AddCardButton>
         )}

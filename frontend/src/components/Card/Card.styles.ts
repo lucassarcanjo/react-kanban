@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const Title = styled.h3``;
 
-export const Description = styled.p``;
+export const Description = styled.div``;
 
 export const Editor = styled.textarea`
   width: 100%;
