@@ -1,4 +1,9 @@
-import { CardContainer, Container, TitleContainer } from "./Column.styles";
+import {
+  AddCardButton,
+  CardContainer,
+  Container,
+  TitleContainer,
+} from "./Column.styles";
 
 export interface ColumnProps {
   title: string;
@@ -12,7 +17,10 @@ export const Column: React.FC<ColumnProps> = ({ title, children }) => {
         <h3>{title}</h3>
       </TitleContainer>
 
-      <CardContainer>{children}</CardContainer>
+      <CardContainer>
+        {children}
+        <AddCardButton>Add Task</AddCardButton>
+      </CardContainer>
     </Container>
   );
 };

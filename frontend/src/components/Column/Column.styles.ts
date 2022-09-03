@@ -19,3 +19,13 @@ export const CardContainer = styled.div`
 export const TitleContainer = styled.div`
   padding: 8px 0;
 `;
+
+export const AddCardButton = styled.button`
+  background-color: #fff;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  text-align: center;
+`;
