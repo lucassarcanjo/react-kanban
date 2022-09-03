@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { usePostCard } from "../../services/cards/methods";
+import { CardType, StatusType } from "../../types/cards";
+import { Card } from "../Card";
 import {
   AddCardButton,
   CardContainer,
@@ -7,10 +11,19 @@ import {
 
 export interface ColumnProps {
   title: string;
-  children?: React.ReactNode | React.ReactNode[];
+  type: StatusType;
+  cards?: CardType[];
+  hasAddButton?: boolean;
 }
 
-export const Column: React.FC<ColumnProps> = ({ title, children }) => {
+export const Column: React.FC<ColumnProps> = ({
+  title,
+  type,
+  cards,
+  hasAddButton = false,
+}) => {
+  const [isAddingCard, setIsAddingCard] = useState(false);
+
   return (
     <Container>
       <TitleContainer>
@@ -18,8 +31,27 @@ export const Column: React.FC<ColumnProps> = ({ title, children }) => {
       </TitleContainer>
 
       <CardContainer>
-        {children}
-        <AddCardButton>Add Task</AddCardButton>
+        {cards?.map((card) => (
+          <Card
+            key={card.id}
+            content={card.content}
+            title={card.title}
+            type={type}
+          />
+        ))}
+        {isAddingCard && (
+          <Card
+            mode="edit"
+            type={type}
+            onFinish={() => setIsAddingCard(false)}
+          />
+        )}
+
+        {hasAddButton && !isAddingCard && (
+          <AddCardButton type="button" onClick={() => setIsAddingCard(true)}>
+            Nova Tarefa
+          </AddCardButton>
+        )}
       </CardContainer>
     </Container>
   );

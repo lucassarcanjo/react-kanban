@@ -1,5 +1,4 @@
 import { Loading } from "../../components";
-import { Card } from "../../components/Card";
 import { Column } from "../../components/Column";
 import { useGetCards } from "../../services/cards/methods";
 import { transformCardData } from "./Home.helpers";
@@ -17,21 +16,14 @@ export const Home = () => {
       {isLoading && <Loading />}
       {data && (
         <KanbanContainer>
-          <Column title="💡 To-Do">
-            {kanbanData?.todo?.map((card) => (
-              <Card key={card.id} content={card.content} />
-            ))}
-          </Column>
-          <Column title="⏳ Doing">
-            {kanbanData?.doing?.map((card) => (
-              <Card key={card.id} content={card.content} />
-            ))}
-          </Column>
-          <Column title="✅ Done">
-            {kanbanData?.doing?.map((card) => (
-              <Card key={card.id} content={card.content} />
-            ))}
-          </Column>
+          <Column
+            title="💡 To-Do"
+            type="todo"
+            cards={kanbanData?.todo}
+            hasAddButton
+          />
+          <Column title="⏳ Doing" type="doing" cards={kanbanData?.doing} />
+          <Column title="✅ Done" type="done" cards={kanbanData?.done} />
         </KanbanContainer>
       )}
     </Container>

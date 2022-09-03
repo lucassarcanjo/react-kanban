@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Card } from "../../types/cards";
+import { CardType } from "../../types/cards";
 import { api } from "../api";
-import { cardMapper, cardPostMapper } from "./mappers";
+import { cardMapper, cardPostRequestMapper } from "./mappers";
 import { GetCardsResponse } from "./types";
 
 export const useGetCards = () => {
@@ -16,8 +16,8 @@ export const usePostCard = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    (card: Card) =>
-      api.post("/cards", cardPostMapper(card)).then((res) => res.data),
+    (card: Omit<CardType, "id">) =>
+      api.post("/cards", cardPostRequestMapper(card)).then((res) => res.data),
     {
       onSuccess: () => {
         queryClient.invalidateQueries(["cards"]);
@@ -30,9 +30,9 @@ export const usePutCard = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    (card: Card) =>
+    (card: CardType) =>
       api
-        .post(`/cards/${card.id}`, cardPostMapper(card))
+        .post(`/cards/${card.id}`, cardPostRequestMapper(card))
         .then((res) => res.data),
     {
       onSuccess: () => {
@@ -45,7 +45,7 @@ export const usePutCard = () => {
 export const useDeleteCard = () => {
   const queryClient = useQueryClient();
 
-  return useMutation((card: Card) => api.delete(`/cards/${card.id}`), {
+  return useMutation((cardId: string) => api.delete(`/cards/${cardId}`), {
     onSuccess: () => {
       queryClient.invalidateQueries(["cards"]);
     },

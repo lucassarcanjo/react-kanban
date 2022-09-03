@@ -1,6 +1,6 @@
-import { Card, StatusType } from "../../types/cards";
+import { CardType, StatusType } from "../../types/cards";
 
-export const transformCardData = (data?: Card[]) => {
+export const transformCardData = (data?: CardType[]) => {
   const transformedData = data?.reduce((acc, card) => {
     if (acc[card.status]) {
       acc[card.status].push(card);
@@ -9,7 +9,7 @@ export const transformCardData = (data?: Card[]) => {
     }
 
     return acc;
-  }, {} as Record<StatusType, Card[]>);
+  }, {} as Record<StatusType, CardType[]>);
 
   return transformedData;
 };

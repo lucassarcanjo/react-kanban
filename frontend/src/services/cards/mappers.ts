@@ -1,7 +1,7 @@
-import { CardResponse } from "./types";
-import { Card, StatusType } from "../../types/cards";
+import { CardResponse, PostCardRequest } from "./types";
+import { CardType, StatusType } from "../../types/cards";
 
-export const cardMapper = (card: CardResponse): Card => {
+export const cardMapper = (card: CardResponse): CardType => {
   return {
     id: card.id,
     title: card.titulo,
@@ -10,9 +10,10 @@ export const cardMapper = (card: CardResponse): Card => {
   };
 };
 
-export const cardPostMapper = (card: Card): CardResponse => {
+export const cardPostRequestMapper = (
+  card: Omit<CardType, "id">
+): PostCardRequest => {
   return {
-    id: card.id,
     titulo: card.title,
     conteudo: card.content,
     lista: card.status,
