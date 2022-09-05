@@ -1,4 +1,4 @@
-import { CardResponse, PostCardRequest } from "./types";
+import { CardResponse, PostCardRequest, PutCardRequest } from "./types";
 import { CardType, StatusType } from "../../types/cards";
 
 export const cardMapper = (card: CardResponse): CardType => {
@@ -19,3 +19,10 @@ export const cardPostRequestMapper = (
     lista: card.status,
   };
 };
+
+export const cardPutRequestMapper = (card: CardType): PutCardRequest => ({
+  id: card.id,
+  titulo: card.title,
+  conteudo: card.content,
+  lista: card.status,
+});

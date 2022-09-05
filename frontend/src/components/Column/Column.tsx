@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useScrollToElement } from "../../hooks";
+import { Droppable } from "react-beautiful-dnd";
+
 import { CardType, StatusType } from "../../types/cards";
 import { Card } from "../Card";
 import {
@@ -23,12 +24,9 @@ export const Column: React.FC<ColumnProps> = ({
   hasAddButton = false,
 }) => {
   const [isAddingCard, setIsAddingCard] = useState(false);
-  const { elementRef: newCardRef, scrollToElement } =
-    useScrollToElement<HTMLDivElement>();
 
   const handleAddCard = () => {
     setIsAddingCard(true);
-    scrollToElement();
   };
 
   return (
@@ -37,30 +35,39 @@ export const Column: React.FC<ColumnProps> = ({
         <h3>{title}</h3>
       </TitleContainer>
 
-      <CardContainer>
-        {cards?.map((card) => (
-          <Card
-            key={card.id}
-            content={card.content}
-            title={card.title}
-            type={type}
-          />
-        ))}
-        {isAddingCard && (
-          <Card
-            ref={newCardRef}
-            mode="edit"
-            type={type}
-            onFinish={() => setIsAddingCard(false)}
-          />
-        )}
+      <Droppable droppableId={type}>
+        {(provided) => (
+          <CardContainer ref={provided.innerRef} {...provided.droppableProps}>
+            {cards?.map((card, index) => (
+              <Card
+                key={card.id}
+                index={index}
+                id={card.id}
+                content={card.content}
+                title={card.title}
+                type={type}
+                mode="view"
+              />
+            ))}
 
-        {hasAddButton && !isAddingCard && (
-          <AddCardButton type="button" onClick={handleAddCard}>
-            Nova Tarefa
-          </AddCardButton>
+            {isAddingCard && (
+              <Card
+                mode="edit"
+                type={type}
+                onFinish={() => setIsAddingCard(false)}
+              />
+            )}
+
+            {provided.placeholder}
+
+            {hasAddButton && !isAddingCard && (
+              <AddCardButton type="button" onClick={handleAddCard}>
+                Nova Tarefa
+              </AddCardButton>
+            )}
+          </CardContainer>
         )}
-      </CardContainer>
+      </Droppable>
     </Container>
   );
 };

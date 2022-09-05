@@ -1,15 +1,31 @@
-import { Description, Title } from "./Card.styles";
+import { Draggable } from "react-beautiful-dnd";
+import { Container, Description, Title } from "./Card.styles";
 
 export interface CardItemProps {
-  title?: string;
-  content?: string;
+  id: string;
+  title: string;
+  content: string;
+  index: number;
 }
 
-export const CardItem: React.FC<CardItemProps> = ({ title, content }) => {
+export const CardItem: React.FC<CardItemProps> = ({
+  id,
+  title,
+  content,
+  index,
+}) => {
   return (
-    <>
-      <Title>{title}</Title>
-      <Description>{content}</Description>
-    </>
+    <Draggable draggableId={id} index={index}>
+      {(provided) => (
+        <Container
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+          {...provided.dragHandleProps}
+        >
+          <Title>{title}</Title>
+          <Description>{content}</Description>
+        </Container>
+      )}
+    </Draggable>
   );
 };
