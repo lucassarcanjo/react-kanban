@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import { useDeleteCard } from "../../services/cards/methods";
 import { Container, Description, Title } from "./Card.styles";
 import { CardMenu } from "./CardMenu";
 
@@ -19,6 +20,15 @@ export const CardItem: React.FC<CardItemProps> = ({
   onEdit,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
+  const removeCardMutation = useDeleteCard();
+
+  const handleRemove = () => {
+    if (id === undefined) {
+      throw new Error("Card id is undefined");
+    }
+
+    removeCardMutation.mutateAsync(id);
+  };
 
   return (
     <Draggable draggableId={id ?? ""} index={index ?? 0}>
@@ -32,7 +42,11 @@ export const CardItem: React.FC<CardItemProps> = ({
           isDragging={snapshot.isDragging}
         >
           <Title>{title}</Title>
-          <CardMenu showButton={isHovering} onEdit={onEdit} />
+          <CardMenu
+            showButton={isHovering}
+            onEdit={onEdit}
+            onRemove={handleRemove}
+          />
           <Description>{content}</Description>
         </Container>
       )}

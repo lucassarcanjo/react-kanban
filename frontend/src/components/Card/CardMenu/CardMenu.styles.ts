@@ -37,8 +37,18 @@ export const DropdownMenuContent = styled(DropdownMenu.Content)`
 export const DropdownMenuItem = styled(DropdownMenu.Item)`
   padding: 4px 16px;
   cursor: pointer;
+  display: flex;
 
   &:hover {
     background-color: #efefef;
+  }
+`;
+
+export const MenuIconContainer = styled.div`
+  margin-right: 4px;
+
+  svg {
+    display: block;
+    margin: 3px 0;
   }
 `;

@@ -1,10 +1,11 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
-import { MoreHorizontal } from "react-feather";
+import { MoreHorizontal, Trash2 } from "react-feather";
 import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  MenuIconContainer,
 } from "./CardMenu.styles";
 
 export interface CardMenuProps {
@@ -19,6 +20,23 @@ export const CardMenu: React.FC<CardMenuProps> = ({
   onRemove,
 }) => {
   const [open, setOpen] = useState(false);
+  const [confirmRemove, setConfirmRemove] = useState(false);
+
+  const checkRemove = () => {
+    if (!confirmRemove) return;
+
+    setConfirmRemove(false);
+  };
+
+  const handleRemove: React.MouseEventHandler<HTMLDivElement> = (e) => {
+    checkRemove();
+    onRemove?.(e);
+  };
+
+  const confirmRemoveCard = (e: Event) => {
+    e.preventDefault();
+    setConfirmRemove(true);
+  };
 
   return (
     <DropdownMenu.Root open={open} onOpenChange={(value) => setOpen(value)}>
@@ -26,9 +44,21 @@ export const CardMenu: React.FC<CardMenuProps> = ({
         <MoreHorizontal />
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="start">
+      <DropdownMenuContent align="start" onCloseAutoFocus={checkRemove}>
         <DropdownMenuItem onClick={onEdit}>Editar</DropdownMenuItem>
-        <DropdownMenuItem onClick={onRemove}>Excluir</DropdownMenuItem>
+        {!confirmRemove && (
+          <DropdownMenuItem onSelect={confirmRemoveCard}>
+            Excluir
+          </DropdownMenuItem>
+        )}
+        {confirmRemove && (
+          <DropdownMenuItem onClick={handleRemove}>
+            <MenuIconContainer>
+              <Trash2 width={16} height={16} />
+            </MenuIconContainer>
+            Clique novamente para excluir
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu.Root>
   );
