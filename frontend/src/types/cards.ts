@@ -1,4 +1,4 @@
-export type StatusType = "todo" | "doing" | "done";
+export type StatusType = "ToDo" | "Doing" | "Done";
 
 export interface CardType {
   id: string;

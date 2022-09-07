@@ -44,17 +44,17 @@ export const Home = () => {
           <KanbanContainer>
             <Column
               title="💡 To-Do"
-              type="todo"
-              cards={kanbanData?.todo}
+              type="ToDo"
+              cards={kanbanData?.ToDo}
               hasAddButton
             />
             <Column
               title="⏳ Doing"
-              type="doing"
+              type="Doing"
               hasAddButton
-              cards={kanbanData?.doing}
+              cards={kanbanData?.Doing}
             />
-            <Column title="✅ Done" type="done" cards={kanbanData?.done} />
+            <Column title="✅ Done" type="Done" cards={kanbanData?.Done} />
           </KanbanContainer>
         </DragDropContext>
       )}
