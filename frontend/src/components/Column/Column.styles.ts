@@ -1,13 +1,12 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.section`
-  background-color: #ccc;
-  padding: 8px;
+  background-color: #f5f5f5;
+  padding: 24px 16px;
   display: flex;
   flex-direction: column;
-  flex-basis: 33%;
-  border-radius: 4px;
-  color: #000;
+  flex: 0 0 33%;
+  border-radius: 8px;
 `;
 
 export const CardContainer = styled.div`
@@ -22,10 +21,17 @@ export const TitleContainer = styled.div`
 
 export const AddCardButton = styled.button`
   background-color: #fff;
-  color: #000;
   border: none;
   border-radius: 4px;
   padding: 8px;
   cursor: pointer;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
+
+  &:active {
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.05);
+  }
 `;
