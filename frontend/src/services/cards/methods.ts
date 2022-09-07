@@ -36,7 +36,7 @@ export const usePutCard = () => {
   return useMutation(
     (card: CardType) =>
       api
-        .post(`/cards/${card.id}`, cardPostRequestMapper(card))
+        .put(`/cards/${card.id}`, cardPutRequestMapper(card))
         .then((res) => res.data),
     {
       onSuccess: () => {
@@ -73,12 +73,9 @@ export const useMoveCard = () => {
         if (!previousCards) return;
 
         // edit current card on the list
-        const newCards = previousCards.map((item) => {
-          if (item.id === card.id) {
-            return card;
-          }
-          return item;
-        });
+        const newCards = previousCards.map((item) =>
+          item.id === card.id ? card : item
+        );
 
         queryClient.setQueryData<CardType[]>(["cards"], [...newCards]);
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
+import { Plus } from "react-feather";
 
 import { CardType, StatusType } from "../../types/cards";
 import { Card } from "../Card";
@@ -62,6 +63,7 @@ export const Column: React.FC<ColumnProps> = ({
 
             {hasAddButton && !isAddingCard && (
               <AddCardButton type="button" onClick={handleAddCard}>
+                <Plus width={16} height={16} />
                 Nova Tarefa
               </AddCardButton>
             )}
