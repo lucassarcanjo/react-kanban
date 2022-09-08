@@ -11,21 +11,21 @@ Highlights da aplicação:
 - drag and drop para mover entre colunas
 - renderização de markdown no conteúdo de um card
 - layout responsivo
-- persistência de dados em um serviço de API
+- persistência de dados em API
 
 ## Setup
 
 Para executar a aplicação em sua máquina você tem duas maneiras: localmente com uma versão do `NodeJS >= 16` ou via Docker.
 
 <blockquote>
-Antes de executar os passos é muito importante que as variáveis de ambiente sejam configuradas. Tanto o backend quanto o frontend, possuem um arquivo .env para este fim. Sem estas configurações o aplicativo não funcinará adequadamente.
+🚧 Antes de executar os passos é muito importante que as variáveis de ambiente sejam configuradas. Tanto o backend quanto o frontend, possuem um arquivo .env para este fim. Sem estas configurações o aplicativo não funcionará adequadamente.
 </blockquote>
 
-### Utilizando Docker para rodar a aplicação
+### 🐳 Utilizando Docker para rodar a aplicação
 
 Na raiz do repositório execute `docker compose up -d`. A aplicação estará disponível no endereço [http://localhost:5173/](http://localhost:5173/).
 
-### Rodando sem Docker
+### 🔥 Rodando sem Docker
 
 Você também pode seguir os seguintes passos:
 
@@ -36,7 +36,7 @@ Você também pode seguir os seguintes passos:
 
 A aplicação estará disponível no endereço [http://localhost:5173/](http://localhost:5173/).
 
-## Decisões Arquiteturais
+## ✍🏽 Decisões Arquiteturais
 
 A decisão das tecnologias utilizadas no projeto envolveu três fatores: pré-requisitos, tempo estimado e experiências anteriores. São elas as principais:
 
@@ -50,11 +50,11 @@ Alguns ganhos da arquitetura escolhida:
 - SPA: single page applications tornam a experiência de usuário mais fluida,
 - Stale While Revalidate: utilizando o react-query foi possível gerenciar com menos código o estado proveniente de dados da API junto com algumas funcionalidades relevantes, o SWR é uma das melhores delas que possibilita que o usuário veja um conteúdo mais recente enquanto a api é chamada em background, isso diminui a quantidade de loadings e melhora UX, além de ser um código mais enxuto se comparado com uma implementação análoga em Redux, por exemplo.
 
-## Pontos de melhoria
+## 🚀 Pontos de melhoria
 
 Recursos que não foram possíveis de adicionar até o momento mas que são importantes:
 
 - Teste unitários, isso seria extremamente perigoso para a longevidade e manutenabilidade da aplicação num cenário real.
 - Testes cross-browser: a aplicação foi validada somente no Google Chrome 104.
 - Otimização de bundler: algumas bibliotecas tiveram um impacto significativo no bundler da aplicação, isso poderia ser revisto a fim de remover / reduzir os chunks.
-- 
+  
