@@ -1,12 +1,12 @@
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { Loading, Column } from "~/components";
+import { Loading, Column, Error as ErrorComponent } from "~/components";
 import { useViewCards, useMoveCard } from "~/services/cards/methods";
 import { StatusType } from "~/types/cards";
 import { transformCardData } from "./Home.helpers";
 import { Container, KanbanContainer, Title } from "./Home.styles";
 
 export const Home = () => {
-  const { data, isLoading } = useViewCards();
+  const { data, isLoading, isError } = useViewCards();
   const cardMoveMutation = useMoveCard();
 
   const kanbanData = transformCardData(data);
@@ -38,6 +38,7 @@ export const Home = () => {
       <Title>Kanban Board</Title>
 
       {isLoading && <Loading />}
+      {isError && <ErrorComponent />}
       {data && (
         <DragDropContext onDragEnd={handleDragEnd}>
           <KanbanContainer>
