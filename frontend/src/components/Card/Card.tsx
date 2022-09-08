@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { usePostCard, usePutCard } from "~/services/cards/methods";
+import { useCreateCard, useEditCard } from "~/services/cards/methods";
 import { StatusType } from "~/types/cards";
 import { CardEditor, CardFormData } from "./CardEditor";
 import { CardItem } from "./CardItem";
@@ -22,8 +22,8 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   const [mode, setMode] = useState(initialMode);
 
-  const createCard = usePostCard();
-  const editCard = usePutCard();
+  const createCard = useCreateCard();
+  const editCard = useEditCard();
 
   const handleSubmit = async (data: CardFormData) => {
     if (data.id) {

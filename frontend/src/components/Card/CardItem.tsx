@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { useDeleteCard } from "~/services/cards/methods";
+import { useRemoveCard } from "~/services/cards/methods";
 import { Container, Description, Title } from "./Card.styles";
 import { CardMenu } from "./CardMenu";
 
@@ -20,7 +20,7 @@ export const CardItem: React.FC<CardItemProps> = ({
   onEdit,
 }) => {
   const [isHovering, setIsHovering] = useState(false);
-  const removeCardMutation = useDeleteCard();
+  const removeCardMutation = useRemoveCard();
 
   const handleRemove = () => {
     if (id === undefined) {

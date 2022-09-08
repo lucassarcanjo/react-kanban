@@ -1,12 +1,12 @@
 import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { Loading, Column } from "~/components";
-import { useGetCards, useMoveCard } from "~/services/cards/methods";
+import { useViewCards, useMoveCard } from "~/services/cards/methods";
 import { StatusType } from "~/types/cards";
 import { transformCardData } from "./Home.helpers";
 import { Container, KanbanContainer, Title } from "./Home.styles";
 
 export const Home = () => {
-  const { data, isLoading } = useGetCards();
+  const { data, isLoading } = useViewCards();
   const cardMoveMutation = useMoveCard();
 
   const kanbanData = transformCardData(data);

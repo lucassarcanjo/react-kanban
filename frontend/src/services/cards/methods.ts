@@ -9,7 +9,7 @@ import {
 } from "./mappers";
 import { GetCardsResponse, PutCardResponse } from "./types";
 
-export const useGetCards = () => {
+export const useViewCards = () => {
   return useQuery(["cards"], () =>
     api
       .get<GetCardsResponse>("/cards")
@@ -17,7 +17,7 @@ export const useGetCards = () => {
   );
 };
 
-export const usePostCard = () => {
+export const useCreateCard = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
@@ -31,7 +31,7 @@ export const usePostCard = () => {
   );
 };
 
-export const usePutCard = () => {
+export const useEditCard = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
@@ -47,7 +47,7 @@ export const usePutCard = () => {
   );
 };
 
-export const useDeleteCard = () => {
+export const useRemoveCard = () => {
   const queryClient = useQueryClient();
 
   return useMutation((cardId: string) => api.delete(`/cards/${cardId}`), {
