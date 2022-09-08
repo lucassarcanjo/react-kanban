@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 export const Container = styled.div<{ isDragging?: boolean }>`
   background-color: #fff;
   border-radius: 4px;
-  padding: 8px;
+  padding: 16px 12px;
   position: relative;
 
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -20,6 +20,8 @@ export const Container = styled.div<{ isDragging?: boolean }>`
 
 export const Title = styled.h3`
   overflow-wrap: anywhere;
+  font-weight: bold;
+  margin-bottom: 4px;
 `;
 
 export const Description = styled.div`
@@ -29,6 +31,25 @@ export const Description = styled.div`
 export const Editor = styled.textarea`
   width: 100%;
   background-color: #fff;
+
+  ::-webkit-scrollbar {
+    background-color: #fff;
+    width: 16px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #fff;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 4px solid #fff;
+  }
+
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
 `;
 
 export const Footer = styled.div`

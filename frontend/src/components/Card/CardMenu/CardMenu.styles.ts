@@ -5,9 +5,11 @@ interface MenuTriggerProps {
   visibility: boolean;
 }
 
-export const DropdownMenuTrigger = styled(
-  DropdownMenu.Trigger
-)<MenuTriggerProps>`
+export const DropdownMenuTrigger = styled(DropdownMenu.Trigger, {
+  shouldForwardProp(propName) {
+    return propName !== "visibility";
+  },
+})<MenuTriggerProps>`
   position: absolute;
   top: 4px;
   right: 10px;

@@ -34,6 +34,7 @@ export const Column: React.FC<ColumnProps> = ({
     <Container>
       <TitleContainer>
         <h3>{title}</h3>
+        {cards?.length && <span>{cards.length}</span>}
       </TitleContainer>
 
       <Droppable droppableId={type}>

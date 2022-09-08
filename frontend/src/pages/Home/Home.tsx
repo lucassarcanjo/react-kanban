@@ -43,17 +43,12 @@ export const Home = () => {
         <DragDropContext onDragEnd={handleDragEnd}>
           <KanbanContainer>
             <Column
-              title="💡 To-Do"
+              title="💡 To Do"
               type="ToDo"
               cards={kanbanData?.ToDo}
               hasAddButton
             />
-            <Column
-              title="⏳ Doing"
-              type="Doing"
-              hasAddButton
-              cards={kanbanData?.Doing}
-            />
+            <Column title="⏳ Doing" type="Doing" cards={kanbanData?.Doing} />
             <Column title="✅ Done" type="Done" cards={kanbanData?.Done} />
           </KanbanContainer>
         </DragDropContext>

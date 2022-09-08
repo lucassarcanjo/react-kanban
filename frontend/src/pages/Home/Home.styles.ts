@@ -1,11 +1,13 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
+  width: 100%;
   padding: 48px;
 `;
 
 export const Title = styled.h1`
-  font-size: 24px;
+  font-size: 32px;
+  font-weight: 700;
   margin-bottom: 24px;
 `;
 
