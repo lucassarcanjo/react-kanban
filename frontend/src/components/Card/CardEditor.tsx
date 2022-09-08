@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, KeyboardEventHandler } from "react";
 import { StatusType } from "../../types/cards";
-import { Button, Container, Editor, Footer } from "./Card.styles";
+import { Editor } from "../Editor";
+import { Button, Container, Footer } from "./Card.styles";
 
 export interface CardFormData {
   id?: string;
@@ -29,6 +30,21 @@ export const CardEditor: React.FC<CardEditorProps> = ({
   const [cardTitle, setCardTitle] = useState(title);
   const [cardContent, setCardContent] = useState(content);
 
+  const handleSubmit = () => {
+    onSubmit?.({
+      id,
+      title: cardTitle,
+      content: cardContent,
+      status: type,
+    });
+  };
+
+  const handleKeyShortcuts: KeyboardEventHandler = (e) => {
+    if (e.key === "Escape") onFinish?.();
+
+    if (e.key === "Enter" && !e.shiftKey) handleSubmit();
+  };
+
   return (
     <Container>
       <form>
@@ -36,28 +52,22 @@ export const CardEditor: React.FC<CardEditorProps> = ({
           placeholder="Digite um titulo"
           value={cardTitle}
           onChange={(e) => setCardTitle(e.target.value)}
+          onKeyDown={handleKeyShortcuts}
           autoFocus
         />
         <Editor
           placeholder="Digite um conteudo"
           value={cardContent}
+          onKeyDown={handleKeyShortcuts}
           onChange={(e) => setCardContent(e.target.value)}
+          textArea
+          autoSize
         />
         <Footer>
           <Button type="button" onClick={onFinish}>
             Cancelar
           </Button>
-          <Button
-            type="button"
-            onClick={() =>
-              onSubmit?.({
-                id,
-                title: cardTitle,
-                content: cardContent,
-                status: type,
-              })
-            }
-          >
+          <Button type="button" onClick={handleSubmit} primary>
             Salvar
           </Button>
         </Footer>
