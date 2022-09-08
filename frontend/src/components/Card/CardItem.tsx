@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { useDeleteCard } from "../../services/cards/methods";
+import { useDeleteCard } from "~/services/cards/methods";
 import { Container, Description, Title } from "./Card.styles";
 import { CardMenu } from "./CardMenu";
 

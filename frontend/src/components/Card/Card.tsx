@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { usePostCard, usePutCard } from "../../services/cards/methods";
-import { StatusType } from "../../types/cards";
+
+import { usePostCard, usePutCard } from "~/services/cards/methods";
+import { StatusType } from "~/types/cards";
 import { CardEditor, CardFormData } from "./CardEditor";
 import { CardItem } from "./CardItem";
 

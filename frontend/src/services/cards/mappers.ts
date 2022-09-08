@@ -1,5 +1,5 @@
+import { CardType, StatusType } from "~/types/cards";
 import { CardResponse, PostCardRequest, PutCardRequest } from "./types";
-import { CardType, StatusType } from "../../types/cards";
 
 export const cardMapper = (card: CardResponse): CardType => {
   return {

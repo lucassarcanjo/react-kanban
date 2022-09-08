@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { CardType } from "../../types/cards";
+import { CardType } from "~/types/cards";
+
 import { api } from "../api";
 import {
   cardMapper,

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { Plus } from "react-feather";
+import { CardType, StatusType } from "~/types/cards";
 
-import { CardType, StatusType } from "../../types/cards";
 import { Card } from "../Card";
 import {
   AddCardButton,

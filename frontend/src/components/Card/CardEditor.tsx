@@ -1,5 +1,5 @@
 import { useState, KeyboardEventHandler } from "react";
-import { StatusType } from "../../types/cards";
+import { StatusType } from "~/types/cards";
 import { Editor } from "../Editor";
 import { Button, Container, Footer } from "./Card.styles";
 
