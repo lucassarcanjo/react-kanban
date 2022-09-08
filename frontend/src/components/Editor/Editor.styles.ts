@@ -10,6 +10,7 @@ export const TextArea = styled.textarea`
   width: 100%;
   background-color: #fff;
   resize: none;
+  max-height: 800px;
 
   ::-webkit-scrollbar {
     background-color: #fff;

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import { useReadMore } from "~/hooks";
 import { useRemoveCard } from "~/services/cards/methods";
-import { Container, Description, Title } from "./Card.styles";
+import { Container, Description, ReadMoreButton, Title } from "./Card.styles";
 import { CardMenu } from "./CardMenu";
 
 export interface CardItemProps {
@@ -21,6 +22,9 @@ export const CardItem: React.FC<CardItemProps> = ({
 }) => {
   const [isHovering, setIsHovering] = useState(false);
   const removeCardMutation = useRemoveCard();
+  const { controlledContent, isLargeText, readMore, setReadMore } = useReadMore(
+    content ?? ""
+  );
 
   const handleRemove = () => {
     if (id === undefined) {
@@ -47,7 +51,12 @@ export const CardItem: React.FC<CardItemProps> = ({
             onEdit={onEdit}
             onRemove={handleRemove}
           />
-          <Description>{content}</Description>
+          <Description>{controlledContent}</Description>
+          {isLargeText && (
+            <ReadMoreButton onClick={() => setReadMore((c) => !c)}>
+              {readMore ? "Ver menos" : "Ver mais..."}
+            </ReadMoreButton>
+          )}
         </Container>
       )}
     </Draggable>

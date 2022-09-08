@@ -51,3 +51,14 @@ export const Button = styled.button<{ primary?: boolean }>`
     background-color: #f5f5f5;
   }
 `;
+
+export const ReadMoreButton = styled.button`
+  color: #0079bf;
+  background-color: transparent;
+  text-align: right;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 8px;
+`;

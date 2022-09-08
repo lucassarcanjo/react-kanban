@@ -1,4 +1,5 @@
 import { useState, KeyboardEventHandler } from "react";
+import toast from "react-hot-toast";
 import { StatusType } from "~/types/cards";
 import { Editor } from "../Editor";
 import { Button, Container, Footer } from "./Card.styles";
@@ -31,6 +32,11 @@ export const CardEditor: React.FC<CardEditorProps> = ({
   const [cardContent, setCardContent] = useState(content);
 
   const handleSubmit = () => {
+    if (cardTitle === "" || cardContent === "") {
+      toast.error("Por favor, preencha todos os campos");
+      return;
+    }
+
     onSubmit?.({
       id,
       title: cardTitle,
@@ -47,31 +53,29 @@ export const CardEditor: React.FC<CardEditorProps> = ({
 
   return (
     <Container>
-      <form>
-        <Editor
-          placeholder="Digite um titulo"
-          value={cardTitle}
-          onChange={(e) => setCardTitle(e.target.value)}
-          onKeyDown={handleKeyShortcuts}
-          autoFocus
-        />
-        <Editor
-          placeholder="Digite um conteudo"
-          value={cardContent}
-          onKeyDown={handleKeyShortcuts}
-          onChange={(e) => setCardContent(e.target.value)}
-          textArea
-          autoSize
-        />
-        <Footer>
-          <Button type="button" onClick={onFinish}>
-            Cancelar
-          </Button>
-          <Button type="button" onClick={handleSubmit} primary>
-            Salvar
-          </Button>
-        </Footer>
-      </form>
+      <Editor
+        placeholder="Digite um titulo"
+        value={cardTitle}
+        onChange={(e) => setCardTitle(e.target.value)}
+        onKeyDown={handleKeyShortcuts}
+        autoFocus
+      />
+      <Editor
+        placeholder="Digite um conteudo"
+        value={cardContent}
+        onKeyDown={handleKeyShortcuts}
+        onChange={(e) => setCardContent(e.target.value)}
+        textArea
+        autoSize
+      />
+      <Footer>
+        <Button type="button" onClick={onFinish}>
+          Cancelar
+        </Button>
+        <Button type="button" onClick={handleSubmit} primary>
+          Salvar
+        </Button>
+      </Footer>
     </Container>
   );
 };
