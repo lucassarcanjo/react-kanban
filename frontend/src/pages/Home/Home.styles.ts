@@ -16,13 +16,16 @@ export const Title = styled.h1`
 `;
 
 export const KanbanContainer = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  gap: 18px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 33%;
+
   align-items: flex-start;
+  grid-gap: 18px;
+  width: 100%;
 
   @media (max-width: 1000px) {
-    flex-wrap: wrap;
+    grid-auto-columns: 100%;
+    grid-auto-flow: dense;
   }
 `;

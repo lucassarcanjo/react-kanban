@@ -5,12 +5,7 @@ export const Container = styled.section`
   padding: 24px 16px;
   display: flex;
   flex-direction: column;
-  flex: 0 0 33%;
   border-radius: 8px;
-
-  @media (max-width: 1000px) {
-    flex: 0 0 100%;
-  }
 `;
 
 export const CardContainer = styled.div`

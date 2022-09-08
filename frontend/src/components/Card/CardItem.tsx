@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+
 import { useReadMore } from "~/hooks";
 import { useRemoveCard } from "~/services/cards/methods";
-import { Container, Description, ReadMoreButton, Title } from "./Card.styles";
+import { MarkdownRenderer } from "../MarkdownRenderer";
+import { Container, ReadMoreButton, Title } from "./Card.styles";
 import { CardMenu } from "./CardMenu";
 
 export interface CardItemProps {
@@ -51,7 +53,9 @@ export const CardItem: React.FC<CardItemProps> = ({
             onEdit={onEdit}
             onRemove={handleRemove}
           />
-          <Description>{controlledContent}</Description>
+
+          <MarkdownRenderer>{controlledContent}</MarkdownRenderer>
+
           {isLargeText && (
             <ReadMoreButton onClick={() => setReadMore((c) => !c)}>
               {readMore ? "Ver menos" : "Ver mais..."}

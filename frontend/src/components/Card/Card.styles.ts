@@ -24,11 +24,6 @@ export const Title = styled.h3`
   margin-bottom: 4px;
 `;
 
-export const Description = styled.div`
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;
-`;
-
 export const Footer = styled.div`
   display: flex;
   justify-content: space-between;
