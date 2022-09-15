@@ -56,8 +56,7 @@ Alguns ganhos da arquitetura escolhida:
 Recursos que não foram possíveis de adicionar até o momento mas que são importantes:
 
 - Reordenação de cards: possível feature de backend que pode ser acrescentada ao projeto para melhorar a experiência do usuário.
-- Teste unitários, isso seria extremamente perigoso para a longevidade e manutenabilidade da aplicação num cenário real.
-- Testes cross-browser: a aplicação foi validada somente no Google Chrome 104.
-- Otimização de bundler: algumas bibliotecas tiveram um impacto significativo no bundler da aplicação, isso poderia ser revisto a fim de remover / reduzir os chunks.
+- Teste unitários, importante para a longevidade e manutenabilidade da aplicação num cenário real.
+- Testes cross-browser: a aplicação foi validada somente no Google Chrome v104.
+- Otimização de bundler: algumas bibliotecas tiveram um impacto significativo no bundle da aplicação, isso poderia ser revisto a fim de otimizar os chunks.
 - Publicação em um ambiente de cloud como Vercel e Heroku.
-  
